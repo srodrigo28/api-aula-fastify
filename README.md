@@ -17,8 +17,8 @@ https://www.youtube.com/watch?v=mULWHLquYP0&t=442s
 
 * npm i typescript @types/node tsx -D
 
-
-* tsc --init
+* npx tsc --init
 
 * versão do typescript
+
 * tsc -v

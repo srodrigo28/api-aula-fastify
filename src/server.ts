@@ -1,9 +1,8 @@
 import { fastify } from 'fastify'
 import { fastifyCors } from '@fastify/cors'
-import { serializerCompiler, validatorCompiler, ZodTypeProvider } from 'fastify-type-provider-zod'
+import { jsonSchemaTransform, serializerCompiler, validatorCompiler, ZodTypeProvider } from 'fastify-type-provider-zod'
 import fastifySwagger from '@fastify/swagger'
-// import { routes } from './routes'
-import fastifySwaggerUi from '@fastify/swagger-ui'
+import { routes } from './routes'
 
 const app = fastify()
 
@@ -18,14 +17,11 @@ app.register(fastifySwagger, {
             title: 'Type Api Treina Dev',
             version: '1.0.0'
         }
-    }
+    },
+    transform: jsonSchemaTransform,
 })
 
-// app.register(routes)
-
-app.register(fastifySwaggerUi, {
-    routePrefix: '/docs'
-})
+app.register(routes)
 
 app.listen({ port: 3333 }).then(() => {
     console.log('HTTP server-running! \n link: \n localhost:3333/docs')
